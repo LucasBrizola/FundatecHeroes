@@ -1,4 +1,4 @@
-package com.example.fundatecheroes.view
+package com.example.fundatecheroes.login.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.databinding.ActivityLoginBinding
-import com.example.fundatecheroes.presentation.LoginViewModel
+import com.example.fundatecheroes.home.view.HomeActivity
+import com.example.fundatecheroes.login.view.presentation.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {

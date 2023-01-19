@@ -15,15 +15,15 @@
         android:theme="@style/Theme.FundatecHeroes"
         tools:targetApi="31" >
         <activity
-            android:name=".view.HomeActivity"
+            android:name=".home.view.HomeActivity"
             android:exported="false"
-            android:parentActivityName=".view.LoginActivity">
+            android:parentActivityName=".login.view.LoginActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".login.view.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">

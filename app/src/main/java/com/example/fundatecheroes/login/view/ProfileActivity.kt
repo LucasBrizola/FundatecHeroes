@@ -1,4 +1,4 @@
-package com.example.fundatecheroes.view
+package com.example.fundatecheroes.login.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
