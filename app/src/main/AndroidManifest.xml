@@ -15,7 +15,7 @@
         android:theme="@style/Theme.FundatecHeroes"
         tools:targetApi="31" >
         <activity
-            android:name=".ProfileActivity"
+            android:name=".view.ProfileActivity"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
