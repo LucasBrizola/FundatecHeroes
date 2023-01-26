@@ -9,50 +9,57 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.fundatecheroes.R
 import com.example.fundatecheroes.databinding.ActivityLoginBinding
 import com.example.fundatecheroes.presentation.LoginViewModel
+import com.example.fundatecheroes.presentation.ViewState
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
-    private val viewModel : LoginViewModel by viewModels()
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnLogin.setOnClickListener{
-            validarEmailValido()
+
+        configLoginButton()
+        viewModel.viewState.observe(this) { state ->
+            when (state) {
+                is
+                ViewState.ShowErrorEmail -> toastEmailInvalido()
+                ViewState.ShowErrorNull -> toastCamposNull()
+                ViewState.ShowSuccess -> avancarTela()
+            }
         }
 
-        binding.btnNovo.setOnClickListener{
+
+        binding.btnNovo.setOnClickListener {
             startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
         }
 
-        viewModel.newText.observe(this){
-        }
-
     }
 
-    private fun validarEmailValido() {
-        if(!binding.email.text.toString().contains("@")) {
-            toastEmailValido()
-        }
-        else {
-            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-        }
-    }
-
-    private fun toastEmailValido() {
-        Toast.makeText(this, "Email deve ser válido! (ter um @)", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showSnack () {
-        val container = findViewById<ConstraintLayout>(R.id.container)
-        Snackbar
-            .make(container, "Nosso Snackbar", Snackbar.LENGTH_LONG)
-            .setAction("Ok") {
-                val intent = Intent (this@LoginActivity, HomeActivity::class.java)
-                startActivity(intent)
+    private fun configLoginButton() {
+        binding.btnLogin.setOnClickListener {
+                viewModel.validarEmailESenha(
+                    email = binding.etEmail.text.toString(),
+                    password = binding.etSenha.text.toString(),
+                )
             }
-            .show()
+        }
+
+    private fun toastEmailInvalido() {
+        Toast.makeText(this, "Email deve ser válido! (ter um @)", Toast.LENGTH_LONG).show()
     }
+
+    private fun toastCamposNull() {
+        Toast.makeText(this, "campos não podem ser vazios!", Toast.LENGTH_LONG).show()
+    }
+
+    private fun avancarTela() {
+                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                startActivity(intent)
+    }
+
 }
