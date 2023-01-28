@@ -38,9 +38,11 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="email"
+                android:hint="@string/email"
+                android:inputType="textWebEmailAddress"
                 android:imeOptions="actionNext"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:autofillHints="emailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -62,10 +64,11 @@
                 android:id="@+id/et_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="senha"
+                android:hint="@string/senha"
                 android:textColor="@color/blue"
                 android:imeOptions="actionPrevious"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:autofillHints="password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -74,10 +77,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:backgroundTint="@color/blue"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/senha"
@@ -90,10 +93,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Novo por aqui?"
+            android:text="@string/novo"
             android:textAllCaps="false"
             android:backgroundTint="@color/blue"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/senha"

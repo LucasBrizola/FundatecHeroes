@@ -1,4 +1,4 @@
-package com.example.fundatecheroes.presentation
+package com.example.fundatecheroes.login.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,11 +13,9 @@ class LoginViewModel : ViewModel() {
             state.value = ViewState.ShowErrorNull
         }
 
-        if (!email!!.contains("@")){
+        if (!email!!.contains("@")) {
             state.value = ViewState.ShowErrorEmail
-        }
-
-        else
+        } else
             state.value = ViewState.ShowSuccess
     }
 }

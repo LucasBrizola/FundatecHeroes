@@ -1,18 +1,29 @@
-package com.example.fundatecheroes.view
+package com.example.fundatecheroes.login.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.fundatecheroes.R
 import com.example.fundatecheroes.databinding.ActivityLoginBinding
-import com.example.fundatecheroes.presentation.LoginViewModel
-import com.example.fundatecheroes.presentation.ViewState
-import com.google.android.material.snackbar.Snackbar
+import com.example.fundatecheroes.home.view.HomeActivity
+import com.example.fundatecheroes.login.presentation.LoginViewModel
+import com.example.fundatecheroes.login.presentation.ViewState
+import com.example.fundatecheroes.profile.view.ProfileActivity
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class LoginActivity : AppCompatActivity() {
+
+    private val moshi by lazy {
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
+
+    private val character by lazy {
+        //Character("Batman", 40)
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -22,6 +33,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        /*val preferences = getSharedPreferences("bd", MODE_PRIVATE)
+        val characterString = moshi.adapter(Character::class.java).toJson(character)
+        preferences.edit().putString("character", characterString).commit()*/
+
 
         configLoginButton()
         viewModel.viewState.observe(this) { state ->
