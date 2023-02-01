@@ -59,7 +59,7 @@
             android:inputType="textLongMessage" />
 
         <Spinner
-            android:id="@+id/SpinnerDcMarvel"
+            android:id="@+id/SpinnerHeroiVilao"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -78,7 +78,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@id/btn_salvar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/SpinnerDcMarvel">
+            app:layout_constraintTop_toBottomOf="@id/SpinnerHeroiVilao">
 
             <EditText
                 android:id="@+id/idade"
@@ -94,7 +94,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/aniversario"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SpinnerDcMarvel"
+                app:layout_constraintTop_toBottomOf="@id/SpinnerHeroiVilao"
                 android:inputType="number" />
 
             <EditText
@@ -110,7 +110,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toEndOf="@id/idade"
-                app:layout_constraintTop_toBottomOf="@id/SpinnerDcMarvel"
+                app:layout_constraintTop_toBottomOf="@id/SpinnerHeroiVilao"
                 android:inputType="date" />
         </LinearLayout>
 

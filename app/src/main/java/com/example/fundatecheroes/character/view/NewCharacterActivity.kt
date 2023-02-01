@@ -11,14 +11,22 @@ import androidx.activity.viewModels
 import com.example.fundatecheroes.character.presentation.NewCharacterViewModel
 import com.example.fundatecheroes.character.presentation.ViewState
 import com.example.fundatecheroes.databinding.ActivityNewCharacterBinding
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
 
-    private var courses = arrayOf<String?>("DC", "Marvel")
+    private var courses = arrayOf<String?>("Herói", "Vilão")
 
     private lateinit var binding: ActivityNewCharacterBinding
 
     private val viewModel: NewCharacterViewModel by viewModels()
+
+    private val moshi by lazy {
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +37,16 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
 
         configSaveButton()
 
+
+        val characterString = moshi.adapter(Character::class.java)
+            .toJson(character)
+
         viewModel.viewState.observe(this) { state ->
             when (state) {
                 is
                 ViewState.ShowErrorNull -> toastCamposNull()
                 ViewState.ShowErrorUrl -> toastUrlInvalida()
-                ViewState.ShowSuccess -> toastSalvar()
+                ViewState.ShowSuccess -> salvar()
             }
         }
     }
@@ -45,15 +57,15 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
                 nome = binding.nome.text.toString(),
                 url = binding.url.text.toString(),
                 descricao = binding.descricao.text.toString(),
-                DcMarvel = binding.SpinnerDcMarvel.onItemSelectedListener.toString(),
+                heroiVilao = binding.SpinnerHeroiVilao.onItemSelectedListener.toString(),
                 idade = binding.nome.text.toString(),
                 aniversario = binding.url.text.toString(),
             )
         }
     }
 
-    private fun criarSpinner(){
-        binding.SpinnerDcMarvel.onItemSelectedListener = this
+    private fun criarSpinner() {
+        binding.SpinnerHeroiVilao.onItemSelectedListener = this
 
         val ad: ArrayAdapter<*> = ArrayAdapter<Any?>(
             this,
@@ -65,7 +77,7 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
             android.R.layout.simple_spinner_dropdown_item
         )
 
-        binding.SpinnerDcMarvel.adapter = ad
+        binding.SpinnerHeroiVilao.adapter = ad
     }
 
     private fun toastUrlInvalida() {
@@ -76,15 +88,20 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
         Toast.makeText(this, "campos não podem ser vazios!", Toast.LENGTH_LONG).show()
     }
 
-    private fun toastSalvar() {
-        //falta salvar
+    private fun salvar(characterString: String?) {
+        Toast.makeText(this, "Heroi/Vilão salvo!", Toast.LENGTH_LONG).show()
+
+        val preferences = getSharedPreferences("bd", MODE_PRIVATE)
+
+        preferences.edit().putString("character", characterString).commit()
     }
 
     override fun onItemSelected(
         parent: AdapterView<*>?,
         view: View, position: Int,
         id: Long
-    ) {}
+    ) {
+    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 }

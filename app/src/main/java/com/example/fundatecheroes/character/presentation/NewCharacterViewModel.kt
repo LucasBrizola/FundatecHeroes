@@ -12,23 +12,24 @@ class NewCharacterViewModel : ViewModel() {
 
     fun validarCampos(
         nome: String?, url: String?, descricao: String?,
-        DcMarvel: String?, idade: String?, aniversario: String?
+        heroiVilao: String?, idade: String?, aniversario: String?
     ) {
-        if (nome.isNullOrEmpty() || url.isNullOrEmpty() || descricao.isNullOrEmpty()
-            || DcMarvel.isNullOrEmpty() || idade.isNullOrEmpty() || aniversario.isNullOrEmpty()
+        if (nome == null || url.isNullOrEmpty() || descricao.isNullOrEmpty()
+            || heroiVilao.isNullOrEmpty() || idade.isNullOrEmpty() || aniversario.isNullOrEmpty()
         ) {
             state.value = ViewState.ShowErrorNull
+            return
         }
 
         if (!url!!.contains("@")) {
             state.value = ViewState.ShowErrorUrl
         } else
-            state.value = ViewState.ShowSuccess
+            state.value = ViewState.ShowSuccess(character = Character(nome = nome, url = url, descricao = descricao, heroiVilao = heroiVilao, idade = idade, aniversario = aniversario))
     }
 }
 
 sealed class ViewState {
     object ShowErrorNull : ViewState()
     object ShowErrorUrl : ViewState()
-    object ShowSuccess : ViewState()
+    data class ShowSuccess(val character: Character) : ViewState()
 }
