@@ -1,14 +1,23 @@
 package com.example.fundatecheroes.character.presentation
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fundatecheroes.App
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 
 class NewCharacterViewModel : ViewModel() {
     private val state = MutableLiveData<ViewState>()
     val viewState: LiveData<ViewState> = state
 
+    private val moshi by lazy {
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
 
     fun validarCampos(
         nome: String?, url: String?, descricao: String?,
@@ -21,15 +30,26 @@ class NewCharacterViewModel : ViewModel() {
             return
         }
 
-        if (!url!!.contains("@")) {
+        if (!url.contains("@")) {
             state.value = ViewState.ShowErrorUrl
-        } else
-            state.value = ViewState.ShowSuccess(character = Character(nome = nome, url = url, descricao = descricao, heroiVilao = heroiVilao, idade = idade, aniversario = aniversario))
+        } else{
+            val character = Character(nome, url, descricao, heroiVilao, idade, aniversario)
+            val characterString = moshi.adapter(Character::class.java)
+                .toJson(character)
+
+            salvar(characterString)
+            state.value = ViewState.ShowSuccess
+        }
+    }
+
+    private fun salvar(characterString: String) {
+        val preferences = App.context.getSharedPreferences("bd", AppCompatActivity.MODE_PRIVATE)
+        preferences.edit().putString("character", characterString).commit()
     }
 }
 
 sealed class ViewState {
     object ShowErrorNull : ViewState()
     object ShowErrorUrl : ViewState()
-    data class ShowSuccess(val character: Character) : ViewState()
+    object ShowSuccess : ViewState()
 }
