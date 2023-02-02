@@ -16,13 +16,12 @@
         android:theme="@style/Theme.FundatecHeroes"
         tools:targetApi="31">
         <activity
-            android:name=".profile.view.ProfileActivity"
-            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
+
             android:name=".character.view.NewCharacterActivity"
             android:exported="false">
             <meta-data
@@ -38,7 +37,9 @@
         </activity>
         <activity
             android:name=".login.view.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
