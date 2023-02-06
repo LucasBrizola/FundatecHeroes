@@ -36,6 +36,7 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
                 is
                 ViewState.ShowErrorNull -> toastCamposNull()
                 ViewState.ShowErrorUrl -> toastUrlInvalida()
+                ViewState.ShowErrorDate -> toastDataInvalida()
                 is ViewState.ShowSuccess -> salvar()
             }
         }
@@ -72,6 +73,11 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
 
     private fun toastUrlInvalida() {
         Toast.makeText(this, "URL deve ser válido! (ter um @)", Toast.LENGTH_LONG).show()
+    }
+
+
+    private fun toastDataInvalida() {
+        Toast.makeText(this, "Data está no formato inválido! (diferente de dd/mm/aaaa)", Toast.LENGTH_LONG).show()
     }
 
     private fun toastCamposNull() {

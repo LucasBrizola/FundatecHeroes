@@ -32,7 +32,12 @@ class NewCharacterViewModel : ViewModel() {
 
         if (!url.contains("@")) {
             state.value = ViewState.ShowErrorUrl
-        } else{
+            return
+        }
+        //digitar caractere / no android ainda caía aqui
+        /*if (!aniversario.contains("/")) {
+            state.value = ViewState.ShowErrorDate
+        }*/ else {
             val character = Character(nome, url, descricao, heroiVilao, idade, aniversario)
             val characterString = moshi.adapter(Character::class.java)
                 .toJson(character)
@@ -51,5 +56,6 @@ class NewCharacterViewModel : ViewModel() {
 sealed class ViewState {
     object ShowErrorNull : ViewState()
     object ShowErrorUrl : ViewState()
+    object ShowErrorDate : ViewState()
     object ShowSuccess : ViewState()
 }
