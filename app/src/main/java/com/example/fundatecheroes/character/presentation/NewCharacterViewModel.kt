@@ -34,6 +34,9 @@ class NewCharacterViewModel : ViewModel() {
             state.value = ViewState.ShowErrorUrl
             return
         }
+            if(heroiVilao.equals("Herói ou Vilão?")){
+                state.value = ViewState.ShowErrorHeroiVilao
+            }
         //digitar caractere / no android ainda caía aqui
         /*if (!aniversario.contains("/")) {
             state.value = ViewState.ShowErrorDate
@@ -57,5 +60,6 @@ sealed class ViewState {
     object ShowErrorNull : ViewState()
     object ShowErrorUrl : ViewState()
     object ShowErrorDate : ViewState()
+    object ShowErrorHeroiVilao : ViewState()
     object ShowSuccess : ViewState()
 }
