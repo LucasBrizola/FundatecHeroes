@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.fundatecheroes.character.view.NewCharacterActivity
+import com.example.fundatecheroes.databinding.ActivityBottomNavigationBinding
 import com.example.fundatecheroes.databinding.ActivityHomeBinding
+import com.example.fundatecheroes.navigation.BottomNavigationActivity
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -16,12 +18,15 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         configActionBar()
         configTab()
 
         binding.btnNovoPersonagem.setOnClickListener {
             startActivity(Intent(this@HomeActivity, NewCharacterActivity::class.java))
+        }
+
+        binding.btnBottomNavigation.setOnClickListener{
+            startActivity(Intent(this@HomeActivity, BottomNavigationActivity::class.java))
         }
     }
 

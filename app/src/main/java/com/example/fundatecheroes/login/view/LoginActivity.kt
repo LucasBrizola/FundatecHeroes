@@ -42,12 +42,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun configLoginButton() {
         binding.btnLogin.setOnClickListener {
-                viewModel.validarEmailESenha(
-                    email = binding.etEmail.text.toString(),
-                    password = binding.etSenha.text.toString(),
-                )
-            }
+            viewModel.validarEmailESenha(
+                email = binding.etEmail.text.toString(),
+                password = binding.etSenha.text.toString(),
+            )
         }
+    }
 
     private fun toastEmailInvalido() {
         Toast.makeText(this, "Email deve ser válido! (ter um @)", Toast.LENGTH_LONG).show()
@@ -58,8 +58,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun avancarTela() {
-                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                startActivity(intent)
+        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+        startActivity(intent)
     }
 
 }

@@ -44,5 +44,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:src="@drawable/plus_svgrepo_com"
+            android:contentDescription="bottom navigation"
+            android:layout_margin="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_novo_personagem"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
