@@ -1,41 +1,38 @@
 package com.example.fundatecheroes.home.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.fundatecheroes.R
-
-private const val ARG_PARAM1 = "param1"
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fundatecheroes.databinding.FragmentCharactersBinding
 
 
 class CharactersFragment : Fragment() {
-    private var param1: String? = null
+    private lateinit var binding: FragmentCharactersBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-        }
-    }
+    private val list = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_characters, container, false)
+    ): View {
+        binding = FragmentCharactersBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = ListItemAdapter()
+        binding.list.adapter = adapter
+
+        adapter.setItems(list)
     }
 
     companion object {
-        fun newInstance(param1: String) =
-            CharactersFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                }
-            }
+        fun newInstance() = CharactersFragment()
     }
 }

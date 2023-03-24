@@ -52,7 +52,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     override fun getItem(position: Int): Fragment {
-        return CharactersFragment.newInstance(position.inc().toString())
+        return CharactersFragment.newInstance()
     }
 
 }

@@ -40,7 +40,7 @@
             android:contentDescription="submit"
             android:layout_margin="16dp"
             android:textAllCaps="false"
-            android:textColor="@color/red"
+            app:backgroundTint="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
@@ -50,13 +50,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|bottom"
-            android:src="@drawable/plus_svgrepo_com"
+            android:src="@drawable/arrow_down_svgrepo_com"
             android:contentDescription="bottom navigation"
             android:layout_margin="16dp"
             android:textAllCaps="false"
             android:textColor="@color/blue"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_novo_personagem"
+            app:layout_constraintStart_toStartOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
