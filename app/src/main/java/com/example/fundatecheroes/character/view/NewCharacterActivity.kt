@@ -50,9 +50,9 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
                 nome = binding.nome.text.toString(),
                 url = binding.url.text.toString(),
                 descricao = binding.descricao.text.toString(),
-                heroiVilao = binding.spinnerHeroiVilao.onItemSelectedListener.toString(),
-                idade = binding.nome.text.toString(),
-                aniversario = binding.url.text.toString(),
+                heroiVilao = binding.spinnerHeroiVilao.getSelectedItem().toString(),
+                idade = binding.idade.text.toString(),
+                aniversario = binding.aniversario.text.toString(),
             )
         }
     }
