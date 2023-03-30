@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FundatecHeroes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/blue</item>
@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-</resources>
+
+    <style name="Theme.Pepsi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowBackground">@drawable/pepsi_logo</item>
+    </style>
+    </resources>
