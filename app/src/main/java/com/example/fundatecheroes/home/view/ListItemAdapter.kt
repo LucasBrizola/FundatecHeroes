@@ -3,13 +3,13 @@ package com.example.fundatecheroes.home.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fundatecheroes.character.presentation.Character
+import com.example.fundatecheroes.character.response.CharacterResponse
 import com.example.fundatecheroes.databinding.ListItemBinding
 
 
 class ListItemAdapter : RecyclerView.Adapter<ListItemViewHolder>() {
 
-    private val list = mutableListOf<Character>()
+    private val list = mutableListOf<CharacterResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,7 +24,8 @@ class ListItemAdapter : RecyclerView.Adapter<ListItemViewHolder>() {
         holder.bind(list[position])
     }
 
-    fun setItems(characters: Character) {
-        list.addAll(listOf(characters))
+    fun setItems(characters: List<CharacterResponse>) {
+        list.addAll(characters)
+        notifyDataSetChanged()
     }
 }

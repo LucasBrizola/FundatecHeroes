@@ -15,7 +15,7 @@ import com.example.fundatecheroes.databinding.ActivityNewCharacterBinding
 
 class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
 
-    private var courses = arrayOf<String?>("Herói ou Vilão?", "Herói", "Vilão")
+    private var courses = arrayOf<String?>("Herói ou Vilão?", "HERO", "VILLAIN")
 
     private lateinit var binding: ActivityNewCharacterBinding
 
@@ -37,7 +37,6 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
                 is
                 ViewState.ShowErrorNull -> toastCamposNull()
                 ViewState.ShowErrorUrl -> toastUrlInvalida()
-                ViewState.ShowErrorDate -> toastDataInvalida()
                 ViewState.ShowErrorHeroiVilao -> toastEscolhaHeroiVilao()
                 is ViewState.ShowSuccess -> salvar()
             }
@@ -47,12 +46,12 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
     private fun configSaveButton() {
         binding.btnSalvar.setOnClickListener {
             viewModel.validarCampos(
-                nome = binding.nome.text.toString(),
+                name = binding.nome.text.toString(),
                 url = binding.url.text.toString(),
-                descricao = binding.descricao.text.toString(),
+                description = binding.descricao.text.toString(),
                 heroiVilao = binding.spinnerHeroiVilao.getSelectedItem().toString(),
-                idade = binding.idade.text.toString(),
-                aniversario = binding.aniversario.text.toString(),
+                age = binding.idade.text.toString(),
+                birthday = binding.aniversario.text.toString(),
             )
         }
     }
@@ -75,11 +74,6 @@ class NewCharacterActivity : AppCompatActivity(), OnItemSelectedListener {
 
     private fun toastUrlInvalida() {
         Toast.makeText(this, "URL deve ser válido! (ter um @)", Toast.LENGTH_LONG).show()
-    }
-
-
-    private fun toastDataInvalida() {
-        Toast.makeText(this, "Data está no formato inválido! (diferente de dd/mm/aaaa)", Toast.LENGTH_LONG).show()
     }
 
     private fun toastCamposNull() {

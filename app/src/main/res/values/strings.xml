@@ -11,4 +11,6 @@
     <string name="descricao_do_heroi">descrição do herói</string>
     <string name="url_do_heroi">url do herói</string>
     <string name="nome_do_heroi">nome do herói</string>
+    <string name="novo_usuario">Criar usuário</string>
+    <string name="name">nome do usuário</string>
 </resources>
