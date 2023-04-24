@@ -25,6 +25,7 @@ class ListItemAdapter : RecyclerView.Adapter<ListItemViewHolder>() {
     }
 
     fun setItems(characters: List<CharacterResponse>) {
+        list.clear()
         list.addAll(characters)
         notifyDataSetChanged()
     }

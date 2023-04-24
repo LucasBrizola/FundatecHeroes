@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
                 is ViewState.ShowErrorEmail -> toastEmailInvalido()
                 is ViewState.ShowErrorNull -> toastCamposNull()
                 is ViewState.ShowSuccess -> showSuccess()
-                is ViewState.Loading -> OnLoading()
+                is ViewState.Loading -> onLoading()
             }
         }
 
@@ -55,15 +55,15 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun toastCamposNull() {
         binding.pbLoading.isVisible = false
-        Toast.makeText(this, "campos não podem ser vazios!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Campos não podem ser vazios!", Toast.LENGTH_LONG).show()
     }
 
     private fun showSuccess() {
         binding.pbLoading.isVisible = false
-        Toast.makeText(this, "usuário salvo", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Usuário salvo", Toast.LENGTH_LONG).show()
     }
 
-    private fun OnLoading() {
+    private fun onLoading() {
         binding.pbLoading.isVisible = true
     }
 }

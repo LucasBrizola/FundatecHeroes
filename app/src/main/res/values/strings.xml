@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Fundatec Heroes</string>
-    <string name="senha">senha</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
     <string name="novo">Novo por aqui?</string>
     <string name="login">Login</string>
-    <string name="email">email</string>
     <string name="pepsiman_image">pepsiman image</string>
-    <string name="salvar">salvar</string>
-    <string name="aniversario_do_heroi">aniversário do herói</string>
-    <string name="idade_do_heroi">idade do herói</string>
-    <string name="descricao_do_heroi">descrição do herói</string>
-    <string name="url_do_heroi">url do herói</string>
-    <string name="nome_do_heroi">nome do herói</string>
+    <string name="salvar">Salvar</string>
+    <string name="nome_do_heroi">Nome do herói</string>
+    <string name="url_do_heroi">Imagem do herói</string>
+    <string name="descricao_do_heroi">Descrição do herói</string>
+    <string name="idade_do_heroi">Idade do herói</string>
+    <string name="aniversario_do_heroi">Aniversário do herói</string>
     <string name="novo_usuario">Criar usuário</string>
-    <string name="name">nome do usuário</string>
+    <string name="name">Nome do usuário</string>
 </resources>

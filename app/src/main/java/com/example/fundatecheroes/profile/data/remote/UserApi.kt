@@ -1,4 +1,4 @@
-package com.example.fundatecheroes.login.data.remote
+package com.example.fundatecheroes.profile.data.remote
 
 import com.example.fundatecheroes.login.data.response.UserResponse
 import com.example.fundatecheroes.profile.data.remote.UserRequest

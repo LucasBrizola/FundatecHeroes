@@ -31,7 +31,8 @@
             android:hint="@string/nome_do_heroi"
             android:padding="10dp"
             android:textColorHint="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/url"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tb_navigation"
@@ -39,7 +40,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/url"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -49,6 +50,7 @@
             android:background="@color/red"
             android:hint="@string/url_do_heroi"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/descricao"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +67,13 @@
             android:background="@color/red"
             android:padding="10dp"
             android:hint="@string/descricao_do_heroi"
+            android:textColor="@color/white"
             android:gravity="top"
             android:textColorHint="@color/white"
             app:layout_constraintBottom_toTopOf="@id/spinnerHeroiVilao"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/url"
+            app:layout_constraintTop_toBottomOf="@id/image"
             android:inputType="textLongMessage" />
 
         <Spinner
@@ -79,6 +82,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:shadowColor="@color/white"
             android:background="@color/blue"
             app:layout_constraintBottom_toTopOf="@id/ll_data"
@@ -111,6 +115,7 @@
                 android:background="@color/red"
                 android:hint="@string/idade_do_heroi"
                 android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/aniversario"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +133,7 @@
                 android:background="@color/red"
                 android:hint="@string/aniversario_do_heroi"
                 android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toEndOf="@id/idade"

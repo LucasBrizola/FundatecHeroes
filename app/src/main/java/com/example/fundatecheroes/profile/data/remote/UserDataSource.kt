@@ -1,8 +1,7 @@
-package com.example.fundatecheroes.login.data.remote
+package com.example.fundatecheroes.profile.data.remote
 
 import android.util.Log
 import com.example.fundatecheroes.login.data.response.UserResponse
-import com.example.fundatecheroes.profile.data.remote.UserRequest
 import com.example.fundatecheroes.webservice.RetrofitNetworkClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

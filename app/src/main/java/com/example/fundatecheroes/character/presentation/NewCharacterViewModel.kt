@@ -32,21 +32,18 @@ class NewCharacterViewModel : ViewModel() {
         age: String?, birthday: String?
     ) {
         viewModelScope.launch {
+            state.value = ViewState.Loading
             if (name == null || url.isNullOrEmpty() || description.isNullOrEmpty()
                 || heroiVilao.isNullOrEmpty() || age.isNullOrEmpty()
             ) {
                 state.value = ViewState.ShowErrorNull
-            }
-
-            if (!url!!.contains("@")) {
-                state.value = ViewState.ShowErrorUrl
             }
             if (heroiVilao.equals("Herói ou Vilão?")) {
                 state.value = ViewState.ShowErrorHeroiVilao
             } else {
                 val idUser = userUseCase.getUserId()
                 characterUseCase.saveCharacter(
-                    idUser, name!!, description!!, url, "MARVEL",
+                    idUser, name!!, description!!, url!!, "MARVEL",
                     heroiVilao!!, age!!.toInt(), birthday
                 )
                 state.value = ViewState.ShowSuccess
@@ -57,7 +54,7 @@ class NewCharacterViewModel : ViewModel() {
 
 sealed class ViewState {
     object ShowErrorNull : ViewState()
-    object ShowErrorUrl : ViewState()
     object ShowErrorHeroiVilao : ViewState()
+    object Loading : ViewState()
     object ShowSuccess : ViewState()
 }

@@ -22,9 +22,11 @@ class ProfileViewModel : ViewModel() {
             if (!name.isNullOrEmpty() && !email.isNullOrEmpty() && !password.isNullOrEmpty()) {
                 if (!email.contains("@")) {
                     state.value = ViewState.ShowErrorEmail
-                } else
-                    usecase.saveNewUser(name, email, password)
-                state.value = ViewState.ShowSuccess
+                } else{
+                    usecase.saveNewUser(name, email, password)?.let {
+                        state.value = ViewState.ShowSuccess
+                    }
+                }
             } else
                 state.value = ViewState.ShowErrorNull
         }
