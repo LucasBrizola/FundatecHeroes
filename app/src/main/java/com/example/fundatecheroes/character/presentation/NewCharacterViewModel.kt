@@ -4,58 +4,57 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.fundatecheroes.App
+import com.example.fundatecheroes.character.data.Character
+import com.example.fundatecheroes.character.usecase.CharacterUsecase
+import com.example.fundatecheroes.profile.domain.usecase.UserUsecase
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.launch
 
 
 class NewCharacterViewModel : ViewModel() {
     private val state = MutableLiveData<ViewState>()
     val viewState: LiveData<ViewState> = state
 
-    private val moshi by lazy {
-        Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+    private val characterUseCase: CharacterUsecase by lazy {
+        CharacterUsecase()
     }
+
+    private val userUseCase: UserUsecase by lazy {
+        UserUsecase()
+    }
+
 
     fun validarCampos(
-        nome: String?, url: String?, descricao: String?,
-        heroiVilao: String?, idade: String?, aniversario: String?
+        name: String?, description: String?, url: String?, heroiVilao: String?,
+        age: String?, birthday: String?
     ) {
-        if (nome == null || url.isNullOrEmpty() || descricao.isNullOrEmpty()
-            || heroiVilao.isNullOrEmpty() || idade.isNullOrEmpty() || aniversario.isNullOrEmpty()
-        ) {
-            state.value = ViewState.ShowErrorNull
-            return
+        viewModelScope.launch {
+            state.value = ViewState.Loading
+            if (name == null || url.isNullOrEmpty() || description.isNullOrEmpty()
+                || heroiVilao.isNullOrEmpty() || age.isNullOrEmpty()
+            ) {
+                state.value = ViewState.ShowErrorNull
+            }
+            if (heroiVilao.equals("Herói ou Vilão?")) {
+                state.value = ViewState.ShowErrorHeroiVilao
+            } else {
+                val idUser = userUseCase.getUserId()
+                characterUseCase.saveCharacter(
+                    idUser, name!!, description!!, url!!, "MARVEL",
+                    heroiVilao!!, age!!.toInt(), birthday
+                )
+                state.value = ViewState.ShowSuccess
+            }
         }
-
-        if (!url.contains("@")) {
-            state.value = ViewState.ShowErrorUrl
-            return
-        }
-        //digitar caractere / no android ainda caía aqui
-        /*if (!aniversario.contains("/")) {
-            state.value = ViewState.ShowErrorDate
-        }*/ else {
-            val character = Character(nome, url, descricao, heroiVilao, idade, aniversario)
-            val characterString = moshi.adapter(Character::class.java)
-                .toJson(character)
-
-            salvar(characterString)
-            state.value = ViewState.ShowSuccess
-        }
-    }
-
-    private fun salvar(characterString: String) {
-        val preferences = App.context.getSharedPreferences("bd", AppCompatActivity.MODE_PRIVATE)
-        preferences.edit().putString("character", characterString).commit()
     }
 }
 
 sealed class ViewState {
     object ShowErrorNull : ViewState()
-    object ShowErrorUrl : ViewState()
-    object ShowErrorDate : ViewState()
+    object ShowErrorHeroiVilao : ViewState()
+    object Loading : ViewState()
     object ShowSuccess : ViewState()
 }
